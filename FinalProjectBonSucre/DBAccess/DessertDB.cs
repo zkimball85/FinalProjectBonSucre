@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using FinalProjectBonSucre.Models;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,14 +16,14 @@ namespace FinalProjectBonSucre.DBAccess
         public static void AddDessert(Dessert dessert)
         {
             // Implementation to add a dessert to the database
-            string query = "INSERT INTO Desserts (Name, Price, Description) Values (@Name, @Price, @Category)";
+            string query = "INSERT INTO Desserts (Name, Price, Category) Values (@Name, @Price, @Category)";
 
             using (SqlConnection conn = DBConnection.GetConnection())
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 cmd.Parameters.AddWithValue("@Name", dessert.Name);
                 cmd.Parameters.AddWithValue("@Price", dessert.Price);
-                cmd.Parameters.AddWithValue("@Category", dessert.Description);
+                cmd.Parameters.AddWithValue("@Category", dessert.Category);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -49,11 +50,13 @@ namespace FinalProjectBonSucre.DBAccess
                 {
                     while (reader.Read())
                     {
-                        Dessert d = new Dessert();
-                        d.DessertId = Convert.ToInt32(reader["DessertId"]);
-                        d.Name = Convert.ToString(reader["Name"]);
-                        d.Price = Convert.ToDecimal(reader["Price"]);
-                        d.Category = Convert.ToString(reader["Category"]);
+                        Dessert d = new Dessert
+                        {
+                            DessertId = Convert.ToInt32(reader["DessertId"]),
+                            Name = Convert.ToString(reader["Name"]),
+                            Price = Convert.ToDouble(reader["Price"]),
+                            Category = Convert.ToString(reader["Category"])
+                        };
 
                         desserts.Add(d);
                     }
@@ -67,7 +70,8 @@ namespace FinalProjectBonSucre.DBAccess
         /// Method to update an existing dessert's information in the database.
         /// </summary>
         /// <param name="dessert">The dessert object with updated information</param>
-        public static void UpdateDessert(Dessert dessert)
+        /// <returns>True if the update was successful, false otherwise</returns>
+        public static bool UpdateDessert(Dessert dessert)
         {
             // Implementation to update a dessert's information in the database
             string query = "UPDATE Desserts SET Name = @Name, Price = @Price, Category = @Category WHERE DessertId = @DessertId";
@@ -81,7 +85,11 @@ namespace FinalProjectBonSucre.DBAccess
                 cmd.Parameters.AddWithValue("@DessertId", dessert.DessertId);
 
                 conn.Open();
-                cmd.ExecuteNonQuery();
+                
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                // Return true if the update was successful
+                return rowsAffected > 0; 
             }
         }
 
@@ -89,7 +97,8 @@ namespace FinalProjectBonSucre.DBAccess
         /// Method to delete a dessert from the database using its ID.
         /// </summary>
         /// <param name="dessertId">The ID of the dessert to be deleted</param>
-        public static void DeleteDessert(int dessertId)
+        /// <returns>True if the delete was successful, false otherwise</returns>
+        public static bool DeleteDessert(int dessertId)
         {
             // Implementation to delete a dessert from the database using its ID
             string query = "DELETE FROM Desserts WHERE DessertId = @DessertId";
@@ -100,8 +109,12 @@ namespace FinalProjectBonSucre.DBAccess
                 cmd.Parameters.AddWithValue("@DessertId", dessertId);
 
                 conn.Open();
-                cmd.ExecuteNonQuery();
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                // Return true if the delete was successful
+                return rowsAffected > 0; 
             }
         }
     }
 }
+
