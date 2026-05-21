@@ -1,0 +1,12 @@
+﻿using System;
+using System.CodeDom;
+using System.Collections.Generic;
+using System.Text;
+
+namespace FinalProjectBonSucre.Models
+{
+    public class Dessert
+    {
+        throws new NotImplementedException();
+    }
+}
