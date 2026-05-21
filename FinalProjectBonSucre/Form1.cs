@@ -3,6 +3,12 @@ using FinalProjectBonSucre.Models;
 
 namespace FinalProjectBonSucre
 {
+
+    /// <summary>
+    /// The main form of the application. This form allows users to select a customer and a dessert, enter a review score,
+    /// and submit that review to the database. It also loads the list of customers and desserts from the database
+    /// when the form is initialized.
+    /// </summary>
     public partial class Form1 : Form
     {
         public Form1()
@@ -16,6 +22,9 @@ namespace FinalProjectBonSucre
             LoadCustomerDropdown();
         }
 
+        /// <summary>
+        /// This method loads the list of desserts from the database and binds it to the cmbDessert ComboBox.
+        /// </summary>
         private void LoadDessertDropdown()
         {
             try
@@ -41,6 +50,9 @@ namespace FinalProjectBonSucre
             }
         }
 
+        /// <summary>
+        /// This method loads the list of customers from the database and binds it to the cmbCustomer ComboBox.
+        /// </summary>
         private void LoadCustomerDropdown()
         {
             try
@@ -64,5 +76,54 @@ namespace FinalProjectBonSucre
             {
                 MessageBox.Show("Error loading customers: " + ex.Message, "Database Error");
             }
+        }
+
+        /// <summary>
+        /// Click event handler for the "Add Review" button. Validates user input, constructs a Review object, and sends it to the database.
+        /// </summary>
+        /// <param name="sender">The control that raised the event.</param>
+        /// <param name="e">The event arguments.</param>
+        private void btnAddReview_Click(object sender, EventArgs e)
+        {
+            // Validate that both a customer and a dessert have been selected
+            if (cmbCustomer.SelectedIndex == -1 || cmbDessert.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select both a customer and a dessert.", "Input Error");
+                return;
+            }
+
+            // Validate score input
+            if (!int.TryParse(txtScore.Text, out int score) || score < 1 || score > 5)
+            {
+                MessageBox.Show("Please enter a valid score between 1 and 5.", "Input Error");
+                return;
+            }
+
+            // Build the Review object
+            Review newReview = new Review
+            {
+                CustomerId = Convert.ToInt32(cmbCustomer.SelectedValue),
+                DessertId = Convert.ToInt32(cmbDessert.SelectedValue),
+                Score = score,
+            };
+
+            // Send the Review object to the database
+            try
+            {
+                ReviewDB.AddReview(newReview);
+
+                MessageBox.Show("Review added successfully.", "Success");
+
+                // Clear the form so its ready for the next review
+                cmbCustomer.SelectedIndex = -1;
+                cmbDessert.SelectedIndex = -1;
+                txtScore.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding review: " + ex.Message, "Database Error");
+            }
+
+        }
     }
 }

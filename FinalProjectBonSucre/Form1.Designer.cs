@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             grpNewReview = new GroupBox();
-            lblSelectCustomer = new Label();
-            cmbCustomer = new ComboBox();
-            lblSelectDessert = new Label();
-            cmbDessert = new ComboBox();
-            lblReviewScore = new Label();
-            txtScore = new TextBox();
             btnAddReview = new Button();
+            txtScore = new TextBox();
+            lblReviewScore = new Label();
+            cmbDessert = new ComboBox();
+            lblSelectDessert = new Label();
+            cmbCustomer = new ComboBox();
+            lblSelectCustomer = new Label();
             btnAddNewCustomerForm = new Button();
             btnAddNewDessertForm = new Button();
             grpNewReview.SuspendLayout();
@@ -58,56 +58,6 @@
             grpNewReview.TabStop = false;
             grpNewReview.Text = "New Review";
             // 
-            // lblSelectCustomer
-            // 
-            lblSelectCustomer.AutoSize = true;
-            lblSelectCustomer.Location = new Point(46, 66);
-            lblSelectCustomer.Name = "lblSelectCustomer";
-            lblSelectCustomer.Size = new Size(193, 32);
-            lblSelectCustomer.TabIndex = 0;
-            lblSelectCustomer.Text = "Select Customer:";
-            // 
-            // cmbCustomer
-            // 
-            cmbCustomer.FormattingEnabled = true;
-            cmbCustomer.Location = new Point(316, 63);
-            cmbCustomer.Name = "cmbCustomer";
-            cmbCustomer.Size = new Size(242, 40);
-            cmbCustomer.TabIndex = 1;
-            // 
-            // lblSelectDessert
-            // 
-            lblSelectDessert.AutoSize = true;
-            lblSelectDessert.Location = new Point(70, 176);
-            lblSelectDessert.Name = "lblSelectDessert";
-            lblSelectDessert.Size = new Size(169, 32);
-            lblSelectDessert.TabIndex = 2;
-            lblSelectDessert.Text = "Select Dessert:";
-            // 
-            // cmbDessert
-            // 
-            cmbDessert.FormattingEnabled = true;
-            cmbDessert.Location = new Point(316, 173);
-            cmbDessert.Name = "cmbDessert";
-            cmbDessert.Size = new Size(242, 40);
-            cmbDessert.TabIndex = 3;
-            // 
-            // lblReviewScore
-            // 
-            lblReviewScore.AutoSize = true;
-            lblReviewScore.Location = new Point(80, 292);
-            lblReviewScore.Name = "lblReviewScore";
-            lblReviewScore.Size = new Size(159, 32);
-            lblReviewScore.TabIndex = 4;
-            lblReviewScore.Text = "Review Score:";
-            // 
-            // txtScore
-            // 
-            txtScore.Location = new Point(316, 289);
-            txtScore.Name = "txtScore";
-            txtScore.Size = new Size(242, 39);
-            txtScore.TabIndex = 5;
-            // 
             // btnAddReview
             // 
             btnAddReview.BackColor = SystemColors.GradientInactiveCaption;
@@ -119,6 +69,57 @@
             btnAddReview.TabIndex = 6;
             btnAddReview.Text = "Submit";
             btnAddReview.UseVisualStyleBackColor = false;
+            btnAddReview.Click += btnAddReview_Click;
+            // 
+            // txtScore
+            // 
+            txtScore.Location = new Point(316, 289);
+            txtScore.Name = "txtScore";
+            txtScore.Size = new Size(242, 39);
+            txtScore.TabIndex = 5;
+            // 
+            // lblReviewScore
+            // 
+            lblReviewScore.AutoSize = true;
+            lblReviewScore.Location = new Point(80, 292);
+            lblReviewScore.Name = "lblReviewScore";
+            lblReviewScore.Size = new Size(159, 32);
+            lblReviewScore.TabIndex = 4;
+            lblReviewScore.Text = "Review Score:";
+            // 
+            // cmbDessert
+            // 
+            cmbDessert.FormattingEnabled = true;
+            cmbDessert.Location = new Point(316, 173);
+            cmbDessert.Name = "cmbDessert";
+            cmbDessert.Size = new Size(242, 40);
+            cmbDessert.TabIndex = 3;
+            // 
+            // lblSelectDessert
+            // 
+            lblSelectDessert.AutoSize = true;
+            lblSelectDessert.Location = new Point(70, 176);
+            lblSelectDessert.Name = "lblSelectDessert";
+            lblSelectDessert.Size = new Size(169, 32);
+            lblSelectDessert.TabIndex = 2;
+            lblSelectDessert.Text = "Select Dessert:";
+            // 
+            // cmbCustomer
+            // 
+            cmbCustomer.FormattingEnabled = true;
+            cmbCustomer.Location = new Point(316, 63);
+            cmbCustomer.Name = "cmbCustomer";
+            cmbCustomer.Size = new Size(242, 40);
+            cmbCustomer.TabIndex = 1;
+            // 
+            // lblSelectCustomer
+            // 
+            lblSelectCustomer.AutoSize = true;
+            lblSelectCustomer.Location = new Point(46, 66);
+            lblSelectCustomer.Name = "lblSelectCustomer";
+            lblSelectCustomer.Size = new Size(193, 32);
+            lblSelectCustomer.TabIndex = 0;
+            lblSelectCustomer.Text = "Select Customer:";
             // 
             // btnAddNewCustomerForm
             // 
