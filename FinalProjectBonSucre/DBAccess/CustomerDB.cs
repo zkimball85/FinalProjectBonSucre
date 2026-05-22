@@ -100,5 +100,49 @@ namespace FinalProjectBonSucre.DBAccess
                 cmd.ExecuteNonQuery();
             }
         }
+        /// <summary>
+        /// This method retrieves a single customer from the database based on their unique ID.
+        /// It returns a Customer object populated with the customer's information,
+        /// which can then be used to display details or pre-fill an update form.
+        /// </summary>
+        /// <param name="customerId">The unique ID of the customer to retrieve</param>
+        /// <returns>A Customer object if found, otherwise null</returns>
+        public static Customer GetCustomerById(int customerId)
+        {
+            Customer foundCustomer = null;
+
+            // The SQL query to select exactly one customer by their ID
+            string query = "SELECT CustomerId, Name, Email, DateOfBirth FROM Customers WHERE CustomerId = @CustomerId";
+
+            // Use your standard database connection setup
+            using (SqlConnection conn = DBConnection.GetConnection())
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                // Safely pass the ID into the query to prevent SQL injection
+                cmd.Parameters.AddWithValue("@CustomerId", customerId);
+
+                conn.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    // If a matching record is found, build the Customer object
+                    if (reader.Read())
+                    {
+                        foundCustomer = new Customer
+                        {
+                            // Map the database columns to the properties defined in your rubric
+
+                            CustomerId = Convert.ToInt32(reader["CustomerId"]),
+                            Name = Convert.ToString(reader["Name"]),
+                            Email = Convert.ToString(reader["Email"]),
+                            DateOfBirth = Convert.ToDateTime(reader["DateOfBirth"])
+                        };
+                    }
+                }
+            }
+
+            // Hand the populated customer object back to the form
+            return foundCustomer;
+        }
     }
 }

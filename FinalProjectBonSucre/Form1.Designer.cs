@@ -162,6 +162,7 @@
             btnUpdateCustomerForm.TabIndex = 3;
             btnUpdateCustomerForm.Text = "Update Customer";
             btnUpdateCustomerForm.UseVisualStyleBackColor = false;
+            btnUpdateCustomerForm.Click += btnUpdateCustomerForm_Click;
             // 
             // btnDeleteCustomerForm
             // 
@@ -174,6 +175,7 @@
             btnDeleteCustomerForm.TabIndex = 4;
             btnDeleteCustomerForm.Text = "Delete Customer";
             btnDeleteCustomerForm.UseVisualStyleBackColor = false;
+            btnDeleteCustomerForm.Click += btnDeleteCustomerForm_Click;
             // 
             // btnUpdateDessertForm
             // 
@@ -186,6 +188,7 @@
             btnUpdateDessertForm.TabIndex = 5;
             btnUpdateDessertForm.Text = "Update Dessert";
             btnUpdateDessertForm.UseVisualStyleBackColor = false;
+            btnUpdateDessertForm.Click += btnUpdateDessertForm_Click;
             // 
             // btnDeleteDessertForm
             // 
@@ -198,6 +201,7 @@
             btnDeleteDessertForm.TabIndex = 6;
             btnDeleteDessertForm.Text = "Delete Dessert";
             btnDeleteDessertForm.UseVisualStyleBackColor = false;
+            btnDeleteDessertForm.Click += btnDeleteDessertForm_Click;
             // 
             // Form1
             // 

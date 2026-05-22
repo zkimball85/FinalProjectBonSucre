@@ -98,6 +98,7 @@
             btnUpdateDessert.TabIndex = 6;
             btnUpdateDessert.Text = "Update";
             btnUpdateDessert.UseVisualStyleBackColor = false;
+            btnUpdateDessert.Click += btnUpdateDessert_Click;
             // 
             // UpdateDessertForm
             // 

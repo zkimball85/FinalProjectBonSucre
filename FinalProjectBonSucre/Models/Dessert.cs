@@ -7,7 +7,7 @@ namespace FinalProjectBonSucre.Models
 {
     public class Dessert
     {
-        public int DsessertId { get; set; }
+        public int DessertId { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
         public string Category { get; set; }

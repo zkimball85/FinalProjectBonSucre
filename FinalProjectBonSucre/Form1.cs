@@ -155,5 +155,121 @@ namespace FinalProjectBonSucre
 
             LoadDessertDropdown();
         }
+
+        /// <summary>
+        /// The Click Event handler for the "Delete Dessert" button. Validates that a dessert is selected, confirms the deletion with the user,
+        /// </summary>
+        /// <param name="sender">The control that raised the event.</param>
+        /// <param name="e">The event arguments.</param>
+        private void btnDeleteDessertForm_Click(object sender, EventArgs e)
+        {
+            if (cmbDessert.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a dessert from the dropdown to delete.", "No Selection");
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show("Are you sure you want to delete this dessert?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+            {
+                try
+                {
+                    int dessertIdToDelete = Convert.ToInt32(cmbDessert.SelectedValue);
+
+                    DessertDB.DeleteDessert(dessertIdToDelete);
+
+                    MessageBox.Show("Dessert deleted successfully.");
+
+                    LoadDessertDropdown();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error deleting dessert: " + ex.Message);
+                }
+            }
+        }
+
+        /// <summary>
+        /// The Click Event handler for the "Delete Customer" button. Validates that a customer is selected, confirms the deletion with the user,
+        /// </summary>
+        /// <param name="sender">The control that raised the event.</param>
+        /// <param name="e">The event arguments.</param>
+        private void btnDeleteCustomerForm_Click(object sender, EventArgs e)
+        {
+            if (cmbCustomer.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a customer from the dropdown to delete.", "No Selection");
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show("Are you sure you want to delete this customer?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+            {
+                try
+                {
+                    int customerIdToDelete = Convert.ToInt32(cmbCustomer.SelectedValue);
+
+                    CustomerDB.DeleteCustomer(customerIdToDelete);
+
+                    MessageBox.Show("Customer deleted successfully.");
+
+                    LoadCustomerDropdown();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error deleting customer: " + ex.Message);
+                }
+            }
+        }
+
+        /// <summary>
+        /// The Click Event handler for the "Update Dessert" button. Validates that a dessert is selected, and then opens the UpdateDessertForm,
+        /// </summary>
+        /// <param name="sender">The control that raised the event.</param>
+        /// <param name="e">The event arguments.</param>
+        private void btnUpdateDessertForm_Click(object sender, EventArgs e)
+        {
+            if (cmbDessert.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a dessert from the dropdown to update.", "No Selection");
+                return;
+            }
+
+            // Grab the selected dessert's ID from the ComboBox
+            int selectedDessertId = Convert.ToInt32(cmbDessert.SelectedValue);
+
+            // Open the new form and hand it the selected dessert's ID so it knows which dessert to update
+            UpdateDessertForm updateForm = new UpdateDessertForm(selectedDessertId);
+            updateForm.ShowDialog();
+
+            // refresh the dropdown when they finish updating
+            LoadDessertDropdown();
+        }
+
+        /// <summary>
+        /// The Click Event handler for the "Update Customer" button. Validates that a customer is selected, and then opens the UpdateCustomerForm. 
+        /// </summary>
+        /// <param name="sender">The control that raised the event.</param>
+        /// <param name="e">The event arguments.</param>
+        private void btnUpdateCustomerForm_Click(object sender, EventArgs e)
+        {
+            if (cmbCustomer.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a customer from the dropdown to update.", "No Selection");
+                return;
+            }
+
+            // Grab the Id of the selected customer from the ComboBox
+            int selectedCustomerId = Convert.ToInt32(cmbCustomer.SelectedValue);
+
+            // Open the new form and hand it the selected customer's ID so it knows which customer to update
+            UpdateCustomerForm updateForm = new(selectedCustomerId);
+            updateForm.ShowDialog();
+
+            // refresh the dropdown when they finish updating
+            LoadCustomerDropdown();
+        }
     }
 }

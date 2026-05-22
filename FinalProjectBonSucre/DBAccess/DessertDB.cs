@@ -115,6 +115,36 @@ namespace FinalProjectBonSucre.DBAccess
                 return rowsAffected > 0; 
             }
         }
+
+        public static Dessert GetDessertById(int dessertId)
+        {
+            Dessert foundDessert = null; 
+
+            string query = "SELECT DessertId, Name, Price, Category FROM Desserts WHERE DessertId = @DessertId";
+
+            using (SqlConnection conn = DBConnection.GetConnection())
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@DessertId", dessertId);
+
+                conn.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        foundDessert = new Dessert
+                        {
+                            DessertId = Convert.ToInt32(reader["DessertId"]),
+                            Name = Convert.ToString(reader["Name"]),
+                            Price = Convert.ToDouble(reader["Price"]),
+                            Category = Convert.ToString(reader["Category"])
+                        };
+                    }
+                }
+            }
+            return foundDessert;
+        }
     }
 }
 

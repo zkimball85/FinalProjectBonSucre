@@ -48,6 +48,7 @@
             btnUpdateCustomer.TabIndex = 0;
             btnUpdateCustomer.Text = "Update";
             btnUpdateCustomer.UseVisualStyleBackColor = false;
+            btnUpdateCustomer.Click += btnUpdateCustomer_Click;
             // 
             // lblName
             // 
