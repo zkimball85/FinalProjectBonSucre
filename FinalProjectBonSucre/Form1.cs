@@ -125,5 +125,35 @@ namespace FinalProjectBonSucre
             }
 
         }
+
+        /// <summary>
+        /// Click Event Handler for the "Add New Customer" button. Opens the AddCustomerForm
+        /// as a dialog, and then reloads the customer dropdown to reflect any new customers 
+        /// that may have been added.
+        /// </summary>
+        /// <param name="sender">The control that raised the event.</param>
+        /// <param name="e">The event arguments.</param>
+        private void btnAddNewCustomerForm_Click(object sender, EventArgs e)
+        {
+            AddCustomerForm customerForm = new AddCustomerForm();
+
+            customerForm.ShowDialog();
+
+            LoadCustomerDropdown();
+        }
+
+        /// <summary>
+        /// The Click Event Handler for the "Add New Dessert" button. Opens the AddDessertForm
+        /// </summary>
+        /// <param name="sender">The control that raised the event.</param>
+        /// <param name="e">The event arguments.</param>
+        private void btnAddNewDessertForm_Click(object sender, EventArgs e)
+        {
+            AddDessertForm dessertForm = new AddDessertForm();
+
+            dessertForm.ShowDialog();
+
+            LoadDessertDropdown();
+        }
     }
 }

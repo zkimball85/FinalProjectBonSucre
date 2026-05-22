@@ -1,6 +1,6 @@
 ﻿namespace FinalProjectBonSucre
 {
-    partial class AddCustomerForm
+    partial class UpdateCustomerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,103 +28,101 @@
         /// </summary>
         private void InitializeComponent()
         {
+            btnUpdateCustomer = new Button();
             lblName = new Label();
-            lblEmailAddress = new Label();
+            lblEmail = new Label();
             lblDateOfBirth = new Label();
             txtName = new TextBox();
             txtEmail = new TextBox();
             txtDateOfBirth = new TextBox();
-            btnSaveCustomer = new Button();
             SuspendLayout();
+            // 
+            // btnUpdateCustomer
+            // 
+            btnUpdateCustomer.BackColor = Color.Yellow;
+            btnUpdateCustomer.Font = new Font("Segoe UI", 12F);
+            btnUpdateCustomer.ForeColor = Color.Black;
+            btnUpdateCustomer.Location = new Point(125, 302);
+            btnUpdateCustomer.Name = "btnUpdateCustomer";
+            btnUpdateCustomer.Size = new Size(252, 112);
+            btnUpdateCustomer.TabIndex = 0;
+            btnUpdateCustomer.Text = "Update";
+            btnUpdateCustomer.UseVisualStyleBackColor = false;
             // 
             // lblName
             // 
             lblName.AutoSize = true;
-            lblName.Location = new Point(61, 53);
+            lblName.Location = new Point(35, 51);
             lblName.Name = "lblName";
             lblName.Size = new Size(202, 32);
-            lblName.TabIndex = 0;
+            lblName.TabIndex = 1;
             lblName.Text = "Name (Fullname):";
             // 
-            // lblEmailAddress
+            // lblEmail
             // 
-            lblEmailAddress.AutoSize = true;
-            lblEmailAddress.Location = new Point(96, 136);
-            lblEmailAddress.Name = "lblEmailAddress";
-            lblEmailAddress.Size = new Size(167, 32);
-            lblEmailAddress.TabIndex = 1;
-            lblEmailAddress.Text = "Email Address:";
+            lblEmail.AutoSize = true;
+            lblEmail.Location = new Point(161, 122);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(76, 32);
+            lblEmail.TabIndex = 2;
+            lblEmail.Text = "Email:";
             // 
             // lblDateOfBirth
             // 
             lblDateOfBirth.AutoSize = true;
-            lblDateOfBirth.Location = new Point(108, 216);
+            lblDateOfBirth.Location = new Point(82, 198);
             lblDateOfBirth.Name = "lblDateOfBirth";
             lblDateOfBirth.Size = new Size(155, 32);
-            lblDateOfBirth.TabIndex = 2;
+            lblDateOfBirth.TabIndex = 3;
             lblDateOfBirth.Text = "Date of birth:";
             // 
             // txtName
             // 
-            txtName.Location = new Point(305, 50);
+            txtName.Location = new Point(261, 48);
             txtName.Name = "txtName";
-            txtName.Size = new Size(276, 39);
-            txtName.TabIndex = 3;
+            txtName.Size = new Size(200, 39);
+            txtName.TabIndex = 4;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(305, 133);
+            txtEmail.Location = new Point(261, 119);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(276, 39);
-            txtEmail.TabIndex = 4;
+            txtEmail.Size = new Size(200, 39);
+            txtEmail.TabIndex = 5;
             // 
             // txtDateOfBirth
             // 
-            txtDateOfBirth.Location = new Point(305, 213);
+            txtDateOfBirth.Location = new Point(261, 195);
             txtDateOfBirth.Name = "txtDateOfBirth";
-            txtDateOfBirth.Size = new Size(276, 39);
-            txtDateOfBirth.TabIndex = 5;
+            txtDateOfBirth.Size = new Size(200, 39);
+            txtDateOfBirth.TabIndex = 6;
             // 
-            // btnSaveCustomer
-            // 
-            btnSaveCustomer.BackColor = Color.Green;
-            btnSaveCustomer.BackgroundImageLayout = ImageLayout.None;
-            btnSaveCustomer.Font = new Font("Segoe UI", 12F);
-            btnSaveCustomer.ForeColor = Color.White;
-            btnSaveCustomer.Location = new Point(189, 310);
-            btnSaveCustomer.Name = "btnSaveCustomer";
-            btnSaveCustomer.Size = new Size(256, 126);
-            btnSaveCustomer.TabIndex = 6;
-            btnSaveCustomer.Text = "Save";
-            btnSaveCustomer.UseVisualStyleBackColor = false;
-            btnSaveCustomer.Click += btnSaveCustomer_Click;
-            // 
-            // AddCustomerForm
+            // UpdateCustomerForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(622, 508);
-            Controls.Add(btnSaveCustomer);
+            ClientSize = new Size(504, 484);
             Controls.Add(txtDateOfBirth);
             Controls.Add(txtEmail);
             Controls.Add(txtName);
             Controls.Add(lblDateOfBirth);
-            Controls.Add(lblEmailAddress);
+            Controls.Add(lblEmail);
             Controls.Add(lblName);
-            Name = "AddCustomerForm";
-            Text = "AddCustomerForm";
+            Controls.Add(btnUpdateCustomer);
+            Name = "UpdateCustomerForm";
+            Text = "UpdateCustomerForm";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
+        private Button btnUpdateCustomer;
         private Label lblName;
-        private Label lblEmailAddress;
+        private Label lblEmail;
         private Label lblDateOfBirth;
         private TextBox txtName;
         private TextBox txtEmail;
         private TextBox txtDateOfBirth;
-        private Button btnSaveCustomer;
     }
 }
