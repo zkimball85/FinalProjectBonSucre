@@ -32,6 +32,36 @@ A Windows Forms desktop application built with C# and .NET for managing bakery o
 5. Build the solution to restore necessary packages.
 6. Press `F5` or click Start to run the application.
 
+## Screenshots
+* **Main Dashboard**
+
+![Main Dashboard](images/dashboard.png)
+
+* **Reviews**
+
+![Main Dashboard](images/reviews.png)
+
+* **Add Dessert**
+
+![Main Dashboard](images/adddessert.png)
+
+* **Add Customer**
+
+![Main Dashboard](images/addcustomer.png)
+
+* **Update Dessert**
+
+![Main Dashboard](images/updatedessert.png)
+
+* **Update Customer**
+
+![Main Dashboard](images/updatecustomer.png)
+
+
+
+
+
+
 ## Author
 
 Zac Kimball
