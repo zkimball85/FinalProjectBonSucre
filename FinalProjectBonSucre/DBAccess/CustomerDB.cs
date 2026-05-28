@@ -89,7 +89,10 @@ namespace FinalProjectBonSucre.DBAccess
         public static void DeleteCustomer(int customerId)
         {
             // Implementation to delete a customer from the database using their ID
-            string query = "DELETE FROM Customers WHERE CustomerId = @CustomerId";
+            // First, delete any reviews associated with the customer to maintain referential integrity
+            // Then, delete the customer record itself
+            string query = @"DELETE FROM Reviews WHERE CustomerId = @CustomerId;
+                            DELETE FROM Customers WHERE CustomerId = @CustomerId";
 
             using (SqlConnection conn = DBConnection.GetConnection())
             using (SqlCommand cmd = new SqlCommand(query, conn))

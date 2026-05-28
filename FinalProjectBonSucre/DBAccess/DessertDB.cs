@@ -101,7 +101,8 @@ namespace FinalProjectBonSucre.DBAccess
         public static bool DeleteDessert(int dessertId)
         {
             // Implementation to delete a dessert from the database using its ID
-            string query = "DELETE FROM Desserts WHERE DessertId = @DessertId";
+            string query = @"DELETE FROM Reviews WHERE DessertId = @DessertId;
+                             DELETE FROM Desserts WHERE DessertId = @DessertId";
 
             using (SqlConnection conn = DBConnection.GetConnection())
             using (SqlCommand cmd = new SqlCommand(query, conn))

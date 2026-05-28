@@ -23,7 +23,19 @@ namespace FinalProjectBonSucre
 
             _dessertIdToUpdate = dessertId;
 
+            PopulateCategories();
+
             LoadDessertData();
+        }
+
+        private void PopulateCategories()
+        {
+            cmbCategory.Items.Clear();
+            cmbCategory.Items.Add("Cake");
+            cmbCategory.Items.Add("Cookie");
+            cmbCategory.Items.Add("Pastry");
+            cmbCategory.Items.Add("Ice Cream");
+            cmbCategory.Items.Add("Pie");
         }
 
         private void LoadDessertData()
