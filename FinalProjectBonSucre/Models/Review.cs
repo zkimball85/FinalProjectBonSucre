@@ -11,6 +11,8 @@ namespace FinalProjectBonSucre.Models
         public int DessertId { get; set; }
         public int Score { get; set; }
 
+        public string? CustomerName { get; set; } // This property is used for display purposes in the ListBox
+
         // EC Validation: Ensure score is between 1 and 5
         public bool IsValid(out string errorMessage)
         {

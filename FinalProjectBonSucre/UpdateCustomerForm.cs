@@ -12,7 +12,7 @@ namespace FinalProjectBonSucre
 {
     public partial class UpdateCustomerForm : Form
     {
-        private int _customerIdToUpdate;
+        private readonly int _customerIdToUpdate;
 
         /// <summary>
         /// This constructor initializes the UpdateCustomerForm with the ID of the customer to be updated.
@@ -73,7 +73,7 @@ namespace FinalProjectBonSucre
         /// <param name="sender">The control that raised the event.</param>
         /// <param name="e">The event arguments.</param>
 
-        private void btnUpdateCustomer_Click(object sender, EventArgs e)
+        private void BtnUpdateCustomer_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtName.Text) || string.IsNullOrWhiteSpace(txtEmail.Text))
             {
@@ -81,7 +81,7 @@ namespace FinalProjectBonSucre
                 return;
             }
 
-            if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+            if (!txtEmail.Text.Contains('@') || !txtEmail.Text.Contains('.'))
             {
                 MessageBox.Show("Please enter a valid email address.", "Validation Error");
                 return;
@@ -102,7 +102,7 @@ namespace FinalProjectBonSucre
             try
             {
                 
-                Customer updatedCustomer = new Customer
+                Customer updatedCustomer = new()
                 {
                     CustomerId = _customerIdToUpdate,
                     Name = txtName.Text,
@@ -114,7 +114,7 @@ namespace FinalProjectBonSucre
 
                 this.Close();
             }
-            catch (Exception ex) 
+            catch (Exception)
             {
                 MessageBox.Show("An error occurred while updating the customer. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

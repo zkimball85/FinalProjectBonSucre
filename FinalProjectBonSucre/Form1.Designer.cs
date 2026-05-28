@@ -42,12 +42,14 @@
             btnDeleteCustomerForm = new Button();
             btnUpdateDessertForm = new Button();
             btnDeleteDessertForm = new Button();
+            btnViewReviews = new Button();
             grpNewReview.SuspendLayout();
             SuspendLayout();
             // 
             // grpNewReview
             // 
             grpNewReview.BackColor = SystemColors.Control;
+            grpNewReview.Controls.Add(btnViewReviews);
             grpNewReview.Controls.Add(btnAddReview);
             grpNewReview.Controls.Add(txtScore);
             grpNewReview.Controls.Add(lblReviewScore);
@@ -67,13 +69,13 @@
             btnAddReview.BackColor = SystemColors.GradientInactiveCaption;
             btnAddReview.Font = new Font("Segoe UI", 12F);
             btnAddReview.ForeColor = Color.White;
-            btnAddReview.Location = new Point(172, 406);
+            btnAddReview.Location = new Point(46, 392);
             btnAddReview.Name = "btnAddReview";
-            btnAddReview.Size = new Size(244, 108);
+            btnAddReview.Size = new Size(217, 108);
             btnAddReview.TabIndex = 6;
             btnAddReview.Text = "Submit";
             btnAddReview.UseVisualStyleBackColor = false;
-            btnAddReview.Click += btnAddReview_Click;
+            btnAddReview.Click += BtnAddReview_Click;
             // 
             // txtScore
             // 
@@ -136,7 +138,7 @@
             btnAddNewCustomerForm.TabIndex = 1;
             btnAddNewCustomerForm.Text = "Add New Customer";
             btnAddNewCustomerForm.UseVisualStyleBackColor = false;
-            btnAddNewCustomerForm.Click += btnAddNewCustomerForm_Click;
+            btnAddNewCustomerForm.Click += BtnAddNewCustomerForm_Click;
             // 
             // btnAddNewDessertForm
             // 
@@ -149,7 +151,7 @@
             btnAddNewDessertForm.TabIndex = 2;
             btnAddNewDessertForm.Text = "Add New Dessert";
             btnAddNewDessertForm.UseVisualStyleBackColor = false;
-            btnAddNewDessertForm.Click += btnAddNewDessertForm_Click;
+            btnAddNewDessertForm.Click += BtnAddNewDessertForm_Click;
             // 
             // btnUpdateCustomerForm
             // 
@@ -162,7 +164,7 @@
             btnUpdateCustomerForm.TabIndex = 3;
             btnUpdateCustomerForm.Text = "Update Customer";
             btnUpdateCustomerForm.UseVisualStyleBackColor = false;
-            btnUpdateCustomerForm.Click += btnUpdateCustomerForm_Click;
+            btnUpdateCustomerForm.Click += BtnUpdateCustomerForm_Click;
             // 
             // btnDeleteCustomerForm
             // 
@@ -175,7 +177,7 @@
             btnDeleteCustomerForm.TabIndex = 4;
             btnDeleteCustomerForm.Text = "Delete Customer";
             btnDeleteCustomerForm.UseVisualStyleBackColor = false;
-            btnDeleteCustomerForm.Click += btnDeleteCustomerForm_Click;
+            btnDeleteCustomerForm.Click += BtnDeleteCustomerForm_Click;
             // 
             // btnUpdateDessertForm
             // 
@@ -188,7 +190,7 @@
             btnUpdateDessertForm.TabIndex = 5;
             btnUpdateDessertForm.Text = "Update Dessert";
             btnUpdateDessertForm.UseVisualStyleBackColor = false;
-            btnUpdateDessertForm.Click += btnUpdateDessertForm_Click;
+            btnUpdateDessertForm.Click += BtnUpdateDessertForm_Click;
             // 
             // btnDeleteDessertForm
             // 
@@ -201,7 +203,20 @@
             btnDeleteDessertForm.TabIndex = 6;
             btnDeleteDessertForm.Text = "Delete Dessert";
             btnDeleteDessertForm.UseVisualStyleBackColor = false;
-            btnDeleteDessertForm.Click += btnDeleteDessertForm_Click;
+            btnDeleteDessertForm.Click += BtnDeleteDessertForm_Click;
+            // 
+            // btnViewReviews
+            // 
+            btnViewReviews.BackColor = Color.Green;
+            btnViewReviews.Font = new Font("Segoe UI", 12F);
+            btnViewReviews.ForeColor = Color.White;
+            btnViewReviews.Location = new Point(341, 392);
+            btnViewReviews.Name = "btnViewReviews";
+            btnViewReviews.Size = new Size(217, 108);
+            btnViewReviews.TabIndex = 7;
+            btnViewReviews.Text = "See Reviews";
+            btnViewReviews.UseVisualStyleBackColor = false;
+            btnViewReviews.Click += BtnViewReviews_Click;
             // 
             // Form1
             // 
@@ -239,5 +254,6 @@
         private Button btnDeleteCustomerForm;
         private Button btnUpdateDessertForm;
         private Button btnDeleteDessertForm;
+        private Button btnViewReviews;
     }
 }

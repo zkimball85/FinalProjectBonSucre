@@ -63,7 +63,7 @@
             lblCategory.Size = new Size(115, 32);
             lblCategory.TabIndex = 2;
             lblCategory.Text = "Category:";
-            lblCategory.Click += lblCategory_Click;
+            lblCategory.Click += LblCategory_Click;
             // 
             // txtName
             // 
@@ -98,7 +98,7 @@
             btnUpdateDessert.TabIndex = 6;
             btnUpdateDessert.Text = "Update";
             btnUpdateDessert.UseVisualStyleBackColor = false;
-            btnUpdateDessert.Click += btnUpdateDessert_Click;
+            btnUpdateDessert.Click += BtnUpdateDessert_Click;
             // 
             // UpdateDessertForm
             // 

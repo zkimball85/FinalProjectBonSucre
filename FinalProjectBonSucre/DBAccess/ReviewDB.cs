@@ -16,18 +16,17 @@ namespace FinalProjectBonSucre.DBAccess
         public static void AddReview(Review review)
         {
             // Implementation to add a review to the database
-            string query = "INSERT INTO Reviews (CustomerId, DessertId, Score) Values (@CustomerId, @DessertId, @Score)";
+            string query = "INSERT INTO Reviews (CustomerId, DessertId, Score, Date) Values (@CustomerId, @DessertId, @Score, GETDATE())";
 
-            using (SqlConnection conn = DBConnection.GetConnection())
-            using (SqlCommand cmd = new SqlCommand(query, conn))
-            {
-                cmd.Parameters.AddWithValue("@CustomerId", review.CustomerId);
-                cmd.Parameters.AddWithValue("@DessertId", review.DessertId);
-                cmd.Parameters.AddWithValue("@Score", review.Score);
+            using SqlConnection conn = DBConnection.GetConnection();
+            using SqlCommand cmd = new SqlCommand(query, conn);
 
-                conn.Open();
-                cmd.ExecuteNonQuery();
-            }
+            cmd.Parameters.AddWithValue("@CustomerId", review.CustomerId);
+            cmd.Parameters.AddWithValue("@DessertId", review.DessertId);
+            cmd.Parameters.AddWithValue("@Score", review.Score);
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
         }
 
         // EC Method

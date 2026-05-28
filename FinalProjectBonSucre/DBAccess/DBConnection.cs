@@ -1,10 +1,12 @@
-﻿namespace FinalProjectBonSucre.DBAccess
+﻿using Microsoft.Data.SqlClient;
+
+namespace FinalProjectBonSucre.DBAccess
 {
     public static class DBConnection
     {
         public static SqlConnection GetConnection()
         {
-            string connectionString = "Data Source=ZACS_WINDOWS;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Command Timeout=0";
+            string connectionString = "Data Source=ZACS_WINDOWS;Initial Catalog=BonSucre;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Command Timeout=0";
             return new SqlConnection(connectionString);
         }
     }

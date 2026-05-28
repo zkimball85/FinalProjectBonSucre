@@ -83,7 +83,7 @@ namespace FinalProjectBonSucre
         /// </summary>
         /// <param name="sender">The control that raised the event.</param>
         /// <param name="e">The event arguments.</param>
-        private void btnAddReview_Click(object sender, EventArgs e)
+        private void BtnAddReview_Click(object sender, EventArgs e)
         {
             // Validate that both a customer and a dessert have been selected
             if (cmbCustomer.SelectedIndex == -1 || cmbDessert.SelectedIndex == -1)
@@ -100,7 +100,7 @@ namespace FinalProjectBonSucre
             }
 
             // Build the Review object
-            Review newReview = new Review
+            Review newReview = new()
             {
                 CustomerId = Convert.ToInt32(cmbCustomer.SelectedValue),
                 DessertId = Convert.ToInt32(cmbDessert.SelectedValue),
@@ -133,9 +133,9 @@ namespace FinalProjectBonSucre
         /// </summary>
         /// <param name="sender">The control that raised the event.</param>
         /// <param name="e">The event arguments.</param>
-        private void btnAddNewCustomerForm_Click(object sender, EventArgs e)
+        private void BtnAddNewCustomerForm_Click(object sender, EventArgs e)
         {
-            AddCustomerForm customerForm = new AddCustomerForm();
+            AddCustomerForm customerForm = new();
 
             customerForm.ShowDialog();
 
@@ -147,9 +147,9 @@ namespace FinalProjectBonSucre
         /// </summary>
         /// <param name="sender">The control that raised the event.</param>
         /// <param name="e">The event arguments.</param>
-        private void btnAddNewDessertForm_Click(object sender, EventArgs e)
+        private void BtnAddNewDessertForm_Click(object sender, EventArgs e)
         {
-            AddDessertForm dessertForm = new AddDessertForm();
+            AddDessertForm dessertForm = new();
 
             dessertForm.ShowDialog();
 
@@ -161,7 +161,7 @@ namespace FinalProjectBonSucre
         /// </summary>
         /// <param name="sender">The control that raised the event.</param>
         /// <param name="e">The event arguments.</param>
-        private void btnDeleteDessertForm_Click(object sender, EventArgs e)
+        private void BtnDeleteDessertForm_Click(object sender, EventArgs e)
         {
             if (cmbDessert.SelectedIndex == -1)
             {
@@ -195,7 +195,7 @@ namespace FinalProjectBonSucre
         /// </summary>
         /// <param name="sender">The control that raised the event.</param>
         /// <param name="e">The event arguments.</param>
-        private void btnDeleteCustomerForm_Click(object sender, EventArgs e)
+        private void BtnDeleteCustomerForm_Click(object sender, EventArgs e)
         {
             if (cmbCustomer.SelectedIndex == -1)
             {
@@ -229,7 +229,7 @@ namespace FinalProjectBonSucre
         /// </summary>
         /// <param name="sender">The control that raised the event.</param>
         /// <param name="e">The event arguments.</param>
-        private void btnUpdateDessertForm_Click(object sender, EventArgs e)
+        private void BtnUpdateDessertForm_Click(object sender, EventArgs e)
         {
             if (cmbDessert.SelectedIndex == -1)
             {
@@ -241,7 +241,7 @@ namespace FinalProjectBonSucre
             int selectedDessertId = Convert.ToInt32(cmbDessert.SelectedValue);
 
             // Open the new form and hand it the selected dessert's ID so it knows which dessert to update
-            UpdateDessertForm updateForm = new UpdateDessertForm(selectedDessertId);
+            UpdateDessertForm updateForm = new(selectedDessertId);
             updateForm.ShowDialog();
 
             // refresh the dropdown when they finish updating
@@ -253,7 +253,7 @@ namespace FinalProjectBonSucre
         /// </summary>
         /// <param name="sender">The control that raised the event.</param>
         /// <param name="e">The event arguments.</param>
-        private void btnUpdateCustomerForm_Click(object sender, EventArgs e)
+        private void BtnUpdateCustomerForm_Click(object sender, EventArgs e)
         {
             if (cmbCustomer.SelectedIndex == -1)
             {
@@ -270,6 +270,21 @@ namespace FinalProjectBonSucre
 
             // refresh the dropdown when they finish updating
             LoadCustomerDropdown();
+        }
+
+        private void BtnViewReviews_Click(object sender, EventArgs e)
+        {
+            // Check if the user actually highlighted a row in the dessert dropdown
+            if (cmbDessert.SelectedIndex != -1 && cmbDessert.SelectedItem != null)
+            {
+                Dessert selectedDessert = (Dessert)cmbDessert.SelectedItem;
+                ReviewForm reviewPage = new(selectedDessert);
+                reviewPage.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a dessert from the dropdown list.", "No Dessert Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

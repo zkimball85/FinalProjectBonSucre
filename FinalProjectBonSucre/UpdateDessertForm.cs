@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FinalProjectBonSucre.DBAccess;
+using FinalProjectBonSucre.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +13,7 @@ namespace FinalProjectBonSucre
     public partial class UpdateDessertForm : Form
     {
 
-        private int _dessertIdToUpdate;
+        private readonly int _dessertIdToUpdate;
 
 
 
@@ -23,21 +25,18 @@ namespace FinalProjectBonSucre
         }
 
         // TODO: Add method that uses _dessertIdToUpdate to do a SQL SELECT query and pre-fill the text boxes so the user sees the old data
-        public void LoadDessertData()
+        public static void LoadDessertData()
         {
             // Implement SQL SELECT query here to get the dessert data based on _dessertIdToUpdate
             // Then pre-fill the text boxes with the retrieved data
-            string query = "SELECT Name, Price, Category FROM Desserts WHERE Id = @DessertId";
-
-
         }
 
-        private void lblCategory_Click(object sender, EventArgs e)
+        private void LblCategory_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btnUpdateDessert_Click(object sender, EventArgs e)
+        private void BtnUpdateDessert_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtName.Text))
             {
@@ -52,7 +51,7 @@ namespace FinalProjectBonSucre
             }
             try
             {
-                Dessert updateDessert = new Dessert
+                Dessert updateDessert = new()
                 {
                     DessertId = _dessertIdToUpdate,
                     Name = txtName.Text,
