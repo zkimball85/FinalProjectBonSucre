@@ -75,48 +75,36 @@ namespace FinalProjectBonSucre
 
         private void BtnUpdateCustomer_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtName.Text) || string.IsNullOrWhiteSpace(txtEmail.Text))
-            {
-                MessageBox.Show("Name and Email cannot be empty.", "Validation Error");
-                return;
-            }
-
-            if (!txtEmail.Text.Contains('@') || !txtEmail.Text.Contains('.'))
-            {
-                MessageBox.Show("Please enter a valid email address.", "Validation Error");
-                return;
-            }
-
             if (!DateTime.TryParse(txtDateOfBirth.Text, out DateTime parsedDob))
             {
                 MessageBox.Show("Please enter a valid date of birth.", "Validation Error");
                 return;
             }
 
-            if (parsedDob.Date >= DateTime.Now.Date)
+            // Build the updated customer object right away
+            Customer updatedCustomer = new()
             {
-                MessageBox.Show("Date of Birth must be in the past.", "Validation Error");
+                CustomerId = _customerIdToUpdate, 
+                Name = txtName.Text,
+                Email = txtEmail.Text,
+                DateOfBirth = parsedDob
+            };
+
+            if (!updatedCustomer.IsValid(out string errorMessage))
+            {
+                MessageBox.Show(errorMessage, "Validation Error");
                 return;
             }
 
             try
             {
-                
-                Customer updatedCustomer = new()
-                {
-                    CustomerId = _customerIdToUpdate,
-                    Name = txtName.Text,
-                    Email = txtEmail.Text,
-                    DateOfBirth = parsedDob
-                };
-
                 CustomerDB.UpdateCustomer(updatedCustomer);
-
+                MessageBox.Show("Customer updated successfully!", "Success");
                 this.Close();
             }
-            catch (Exception)
+            catch (Exception ex) 
             {
-                MessageBox.Show("An error occurred while updating the customer. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred while updating the customer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

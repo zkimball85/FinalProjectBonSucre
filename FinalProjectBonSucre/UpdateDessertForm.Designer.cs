@@ -63,7 +63,7 @@
             lblCategory.Size = new Size(115, 32);
             lblCategory.TabIndex = 2;
             lblCategory.Text = "Category:";
-            lblCategory.Click += LblCategory_Click;
+            
             // 
             // txtName
             // 

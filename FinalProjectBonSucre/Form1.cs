@@ -277,9 +277,17 @@ namespace FinalProjectBonSucre
             // Check if the user actually highlighted a row in the dessert dropdown
             if (cmbDessert.SelectedIndex != -1 && cmbDessert.SelectedItem != null)
             {
-                Dessert selectedDessert = (Dessert)cmbDessert.SelectedItem;
-                ReviewForm reviewPage = new(selectedDessert);
-                reviewPage.ShowDialog();
+                try
+                {
+                    Dessert selectedDessert = (Dessert)cmbDessert.SelectedItem;
+                    ReviewForm reviewPage = new(selectedDessert);
+                    reviewPage.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    // Catches any database errors that happen while the ReviewForm is trying to load
+                    MessageBox.Show("Error loading reviews: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {

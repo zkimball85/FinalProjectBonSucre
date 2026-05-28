@@ -38,14 +38,14 @@ namespace FinalProjectBonSucre.DBAccess
         public static List<ReviewDisplayItem> GetReviewsByDessert(int dessertId)
         {
             // Implementation to retrieve reviews for a specific dessert from the database
-            List<ReviewDisplayItem> displayItems = new List<ReviewDisplayItem>();
+            List<ReviewDisplayItem> displayItems = new();
 
             // INNER JOIN query to get customer name, dessert name, price, and score
             string query = @"
                 SELECT      c.Name          AS CustomerName, d.Name AS DessertName, d.Price AS DessertPrice, r.Score
                 FROM        Reviews r
-                INNER JOIN  Customers c     ON r.CustomerId = c.Id
-                INNER JOIN  Desserts d      ON r.DessertId = d.Id
+                INNER JOIN  Customers c     ON r.CustomerId = c.CustomerId
+                INNER JOIN  Desserts d      ON r.DessertId = d.DessertId
                 WHERE       r.DessertId = @DessertId";
 
             using (SqlConnection conn = DBConnection.GetConnection())
@@ -56,18 +56,17 @@ namespace FinalProjectBonSucre.DBAccess
                 conn.Open();
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
-                { 
-                    while (reader.Read())
-                    {
-                        ReviewDisplayItem item = new ReviewDisplayItem();
-                        item.CustomerName = Convert.ToString(reader["CustomerName"]);
-                        item.DessertName = Convert.ToString(reader["DessertName"]);
-                        item.DessertPrice = Convert.ToDouble(reader["DessertPrice"]);
-                        item.Score = Convert.ToInt32(reader["Score"]);
-
-                        displayItems.Add(item);
-                    }
-                }
+                while (reader.Read())
+                {
+                    ReviewDisplayItem item = new ReviewDisplayItem();
+                        {
+                            item.CustomerName = Convert.ToString(reader["CustomerName"]);
+                            item.DessertName = Convert.ToString(reader["DessertName"]);
+                            item.DessertPrice = Convert.ToDouble(reader["DessertPrice"]);
+                            item.Score = Convert.ToInt32(reader["Score"]);
+                        };
+                            displayItems.Add(item);
+                }            
             }
             return displayItems;
         }
@@ -82,5 +81,8 @@ namespace FinalProjectBonSucre.DBAccess
         public string DessertName { get; set; }
         public double DessertPrice { get; set; }
         public int Score { get; set; }
+
+        // String for the ListBox to display the customer's name and score
+        public string FullReviewText => $"{CustomerName} reviewed the {DessertName} - Score: {Score}/5";
     }
 }

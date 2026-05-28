@@ -31,16 +31,15 @@
             lstReviews = new ListBox();
             lblCustomerName = new Label();
             lblDessertName = new Label();
-            lblPrice = new Label();
             lblScore = new Label();
             SuspendLayout();
             // 
             // lstReviews
             // 
             lstReviews.FormattingEnabled = true;
-            lstReviews.Location = new Point(28, 342);
+            lstReviews.Location = new Point(28, 112);
             lstReviews.Name = "lstReviews";
-            lstReviews.Size = new Size(464, 260);
+            lstReviews.Size = new Size(728, 260);
             lstReviews.TabIndex = 0;
             // 
             // lblCustomerName
@@ -55,25 +54,16 @@
             // lblDessertName
             // 
             lblDessertName.AutoSize = true;
-            lblDessertName.Location = new Point(52, 118);
+            lblDessertName.Location = new Point(324, 42);
             lblDessertName.Name = "lblDessertName";
             lblDessertName.Size = new Size(169, 32);
             lblDessertName.TabIndex = 2;
             lblDessertName.Text = "Dessert Name:";
             // 
-            // lblPrice
-            // 
-            lblPrice.AutoSize = true;
-            lblPrice.Location = new Point(151, 194);
-            lblPrice.Name = "lblPrice";
-            lblPrice.Size = new Size(70, 32);
-            lblPrice.TabIndex = 3;
-            lblPrice.Text = "Price:";
-            // 
             // lblScore
             // 
             lblScore.AutoSize = true;
-            lblScore.Location = new Point(143, 264);
+            lblScore.Location = new Point(633, 42);
             lblScore.Name = "lblScore";
             lblScore.Size = new Size(78, 32);
             lblScore.TabIndex = 4;
@@ -83,9 +73,8 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(542, 634);
+            ClientSize = new Size(816, 426);
             Controls.Add(lblScore);
-            Controls.Add(lblPrice);
             Controls.Add(lblDessertName);
             Controls.Add(lblCustomerName);
             Controls.Add(lstReviews);
@@ -101,7 +90,6 @@
         private ListBox lstReviews;
         private Label lblCustomerName;
         private Label lblDessertName;
-        private Label lblPrice;
         private Label lblScore;
     }
 }

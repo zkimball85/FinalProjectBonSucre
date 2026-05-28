@@ -30,41 +30,34 @@ namespace FinalProjectBonSucre
         private void btnSaveCustomer_Click(object sender, EventArgs e)
         {
             // EC Validation: Ensure all fields are filled out and valid before attempting to save
-            if (string.IsNullOrWhiteSpace(txtName.Text) || string.IsNullOrWhiteSpace(txtEmail.Text))
-            {
-                MessageBox.Show("Name and Email cannot be empty.", "Validation Error");
-                return;
-            }
-
-            if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
-            {
-                MessageBox.Show("Please enter a valid email address.", "Validation Error");
-                return;
-            }
-
             if (!DateTime.TryParse(txtDateOfBirth.Text, out DateTime dateOfBirth))
             {
-                MessageBox.Show("Please enter a valid date of birth.", "Validation Error");
+                MessageBox.Show("Please enter a valid date of birth (e.g., MM/DD/YYYY).", "Validation Error");
+                return;
+            }
+
+            Customer newCustomer = new Customer
+            {
+                Name = txtName.Text,
+                Email = txtEmail.Text,
+                DateOfBirth = dateOfBirth
+            };
+
+            if (!newCustomer.IsValid(out string errorMessage))
+            {
+                MessageBox.Show(errorMessage, "Validation Error");
                 return;
             }
 
             try
             {
-                Customer newCustomer = new Customer
-                {
-                    Name = txtName.Text,
-                    Email = txtEmail.Text,
-                    DateOfBirth = dateOfBirth
-                };
-
                 CustomerDB.AddCustomer(newCustomer);
-
                 MessageBox.Show("Customer added successfully!");
                 this.Close();
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
-                MessageBox.Show("Error saving customer: " + ex.Message);
+                MessageBox.Show("Error saving customer: " + ex.Message, "Database Error");
             }
         }
     }

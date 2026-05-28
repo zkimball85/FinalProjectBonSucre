@@ -74,7 +74,7 @@ namespace FinalProjectBonSucre.DBAccess
             {
                 cmd.Parameters.AddWithValue("@Name", customer.Name);
                 cmd.Parameters.AddWithValue("@Email", customer.Email);
-                cmd.Parameters.AddWithValue("DateOfBirth", customer.DateOfBirth);
+                cmd.Parameters.AddWithValue("@DateOfBirth", customer.DateOfBirth);
                 cmd.Parameters.AddWithValue("@CustomerId", customer.CustomerId);
 
                 conn.Open();

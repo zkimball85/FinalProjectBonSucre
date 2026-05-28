@@ -29,42 +29,39 @@ namespace FinalProjectBonSucre
         private void btnSaveDessert_Click(object sender, EventArgs e)
         {
             // EC Validation: Ensure all fields are filled out and valid before attempting to save
-            if (string.IsNullOrWhiteSpace(txtName.Text))
+            if (!double.TryParse(txtPrice.Text, out double price))
             {
-                MessageBox.Show("Dessert name cannot be empty.", "Validation Error");
+                MessageBox.Show("Please enter a valid numerical price.", "Validation Error");
                 return;
             }
 
-            if (!double.TryParse(txtPrice.Text, out double price) || price <= 0)
+            // Safely grab the category text (if nothing is selected, pass a blank string)
+            string selectedCategory = cmbCategory.SelectedIndex != -1 ? cmbCategory.SelectedItem.ToString() : "";
+
+            // Build the new dessert object
+            Dessert newDessert = new Dessert
             {
-                MessageBox.Show("Please enter a valid non-negative price.", "Validation Error");
+                Name = txtName.Text,
+                Price = price,
+                Category = selectedCategory
+            };
+
+            if (!newDessert.IsValid(out string errorMessage))
+            {
+                MessageBox.Show(errorMessage, "Validation Error");
                 return;
             }
 
-            if (cmbCategory.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a category.", "Validation Error");
-                return;
-            }
-
+            // If it makes it here, the data is perfect. Save it to the database
             try
             {
-                Dessert newDessert = new Dessert
-                {
-                    Name = txtName.Text,
-                    Price = price,
-                    Category = cmbCategory.SelectedItem.ToString()
-                };
-
                 DessertDB.AddDessert(newDessert);
-
                 MessageBox.Show("Dessert added successfully.", "Success");
-
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error adding dessert: " + ex.Message);
+                MessageBox.Show("Error adding dessert: " + ex.Message, "Database Error");
             }
         }
     }

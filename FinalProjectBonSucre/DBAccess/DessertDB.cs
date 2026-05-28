@@ -116,6 +116,11 @@ namespace FinalProjectBonSucre.DBAccess
             }
         }
 
+        /// <summary>
+        /// This method retrieves a dessert from the database using its ID. It returns the dessert object if found, or null if not found.
+        /// </summary>
+        /// <param name="dessertId">The ID of the dessert to retrieve.</param>
+        /// <returns>The dessert object if found, or null if not found.</returns>
         public static Dessert GetDessertById(int dessertId)
         {
             Dessert foundDessert = null; 
